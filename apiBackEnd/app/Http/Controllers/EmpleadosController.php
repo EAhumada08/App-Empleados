@@ -56,6 +56,7 @@ class EmpleadosController extends Controller
         return response()->json($empleado,201);
     }
 
+
     /**
      * Remove the specified resource from storage.
      */

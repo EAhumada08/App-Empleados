@@ -1,0 +1,20 @@
+GET http://localhost:8000/api/empleado/1
+
+####
+PUT http://localhost:8000/api/empleados/7
+Content-Type: application/json
+
+{
+  "id": 7,
+  "nombre": "Pabl",
+  "apellido": "Hernandez",
+  "email": "pablito@gmail.com",
+  "telefono": "4563454548",
+  "direccion": "Centro",
+  "posicion": "gerente",
+  "salario": "30000.00",
+  "fecha_contratacion": null,
+  "estado": "activo",
+  "created_at": "2024-11-15T00:52:31.000000Z",
+  "updated_at": "2024-11-15T00:52:31.000000Z"
+  }

@@ -29,54 +29,101 @@
                     <td>{{item.salario}}</td>
                     <td>{{item.contrato}}</td>
                     <td>{{item.estado}}</td>                    
-                    <td><button type="button" class="btn btn-primary">E</button></td>
-                    <td><button type="button" class="btn btn-danger">B</button></td>
+                    <td><button type="button" class="btn btn-primary" (click)="getDataFromId(item.id)">E</button></td>
+                    <td><button type="button" class="btn btn-danger" (click)="eliminar(item.id)">B</button></td>
                   </tr>           
             }          
         </tbody>
       </table>
     </div>
-    <div class="col">
-        <form [formGroup]="empleadosForm" (submit) = 'guardar()'>
-            <div class="mb-3">
-                <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="nombre" formControlName="nombre">
-            </div>
-            <div class="mb-3">
-                <label for="apellido" class="form-label">Apellido</label>
-                <input type="text" class="form-control" id="apellido" formControlName="apellido">
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Correo</label>
-                <input type="text" class="form-control" id="email" formControlName="email">
-            </div>
-            <div class="mb-3">
-                <label for="telefono" class="form-label">Teléfono</label>
-                <input type="text" class="form-control" id="telefono" formControlName="telefono">
-            </div>
-            <div class="mb-3">
-                <label for="direccion" class="form-label">Dirección</label>
-                <input type="text" class="form-control" id="direccion" formControlName="direccion">
-            </div>
-            <div class="mb-3">
-                <label for="posicion" class="form-label">Posición</label>
-                <input type="text" class="form-control" id="posicion" formControlName="posicion">
-            </div>
-            <div class="mb-3">
-                <label for="salario" class="form-label">Salario</label>
-                <input type="text" class="form-control" id="salario" formControlName="salario">
-            </div>
-            <div class="mb-3">
-                <label for="contrato" class="form-label">Contrato</label>
-                <input type="text" class="form-control" id="contrato" formControlName="contrato">
-            </div>
-            <div class="mb-3">
-                <label for="estado" class="form-label">Estado</label>
-                <input type="text" class="form-control" id="estado" formControlName="estado">
-            </div>       
-            <br>
-            <button type="submit" [disabled]="!empleadosForm.valid">Guardar</button><br>
-        </form>
-    </div>
+    @if(isEdit){
+        <div class="col">
+            <form [formGroup]="empleadoForm" (submit) = 'guardarCambios()'>
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" [(ngModel)]="empleado.nombre" class="form-control" id="nombre" formControlName="nombre">
+                </div>
+                <div class="mb-3">
+                    <label for="apellido" class="form-label">Apellido</label>
+                    <input type="text" [(ngModel)]="empleado.apellido" class="form-control" id="apellido" formControlName="apellido">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Correo</label>
+                    <input type="text" [(ngModel)]="empleado.email" class="form-control" id="email" formControlName="email">
+                </div>
+                <div class="mb-3">
+                    <label for="telefono" class="form-label">Teléfono</label>
+                    <input type="text" [(ngModel)]="empleado.telefono" class="form-control" id="telefono" formControlName="telefono">
+                </div>
+                <div class="mb-3">
+                    <label for="direccion" class="form-label">Dirección</label>
+                    <input type="text" [(ngModel)]="empleado.direccion" class="form-control" id="direccion" formControlName="direccion">
+                </div>
+                <div class="mb-3">
+                    <label for="posicion" class="form-label">Posición</label>
+                    <input type="text" [(ngModel)]="empleado.posicion" class="form-control" id="posicion" formControlName="posicion">
+                </div>
+                <div class="mb-3">
+                    <label for="salario" class="form-label">Salario</label>
+                    <input type="text" [(ngModel)]="empleado.salario" class="form-control" id="salario" formControlName="salario">
+                </div>
+                <div class="mb-3">
+                    <label for="contrato" class="form-label">Contrato</label>
+                    <input type="text" [(ngModel)]="empleado.fecha_contratacion" class="form-control" id="contrato" formControlName="fecha_contratacion">
+                </div>
+                <div class="mb-3">
+                    <label for="estado" class="form-label">Estado</label>
+                    <input type="text" [(ngModel)]="empleado.estado" class="form-control" id="estado" formControlName="estado">
+                </div>       
+                <br>
+                <button type="submit" [disabled]="!empleadoForm.valid">Guardar cambios</button><br>
+            </form>
+        </div>
+    }
+    @else {
+        <div class="col">
+            <form [formGroup]="empleadosForm" (submit) = 'guardar()'>
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" formControlName="nombre">
+                </div>
+                <div class="mb-3">
+                    <label for="apellido" class="form-label">Apellido</label>
+                    <input type="text" class="form-control" id="apellido" formControlName="apellido">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Correo</label>
+                    <input type="text" class="form-control" id="email" formControlName="email">
+                </div>
+                <div class="mb-3">
+                    <label for="telefono" class="form-label">Teléfono</label>
+                    <input type="text" class="form-control" id="telefono" formControlName="telefono">
+                </div>
+                <div class="mb-3">
+                    <label for="direccion" class="form-label">Dirección</label>
+                    <input type="text" class="form-control" id="direccion" formControlName="direccion">
+                </div>
+                <div class="mb-3">
+                    <label for="posicion" class="form-label">Posición</label>
+                    <input type="text" class="form-control" id="posicion" formControlName="posicion">
+                </div>
+                <div class="mb-3">
+                    <label for="salario" class="form-label">Salario</label>
+                    <input type="text" class="form-control" id="salario" formControlName="salario">
+                </div>
+                <div class="mb-3">
+                    <label for="contrato" class="form-label">Contrato</label>
+                    <input type="text" class="form-control" id="contrato" formControlName="contrato">
+                </div>
+                <div class="mb-3">
+                    <label for="estado" class="form-label">Estado</label>
+                    <input type="text" class="form-control" id="estado" formControlName="estado">
+                </div>       
+                <br>
+                <button type="submit" [disabled]="!empleadosForm.valid">Guardar</button><br>
+            </form>
+        </div>
+    }
+   
     
   </div>

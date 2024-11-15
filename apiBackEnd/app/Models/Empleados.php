@@ -15,7 +15,7 @@ class Empleados extends Model
         'direccion',
         'posicion',
         'salario',
-        'fecha_cotratacion',
+        'fecha_contratacion',
         'estado'
     ];
 }
